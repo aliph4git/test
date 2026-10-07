@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LKPD Interaktif Bahasa Inggris — Descriptive Text</title>
+<style>
+:root{--p:#3157d5;--p2:#7047c9;--a:#0ea5a4;--ink:#172033;--muted:#667085;--line:#dfe6f1;--bg:#eef4ff;--card:#fff;--soft:#f7f9fd;--ok:#15803d;--danger:#dc2626}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font-family:Inter,Segoe UI,Arial,sans-serif;background:linear-gradient(135deg,#eef4ff,#faf7ff 52%,#ecfeff);line-height:1.55}
+.wrap{max-width:1080px;margin:auto;padding:20px}
+.hero{position:relative;overflow:hidden;color:#fff;padding:36px;border-radius:28px;background:linear-gradient(135deg,#244bc7,#6b3fc4);box-shadow:0 20px 55px #273c8b25}
+.hero:after{content:"";position:absolute;right:-90px;top:-130px;width:330px;height:330px;border-radius:50%;background:#ffffff16}
+.kicker{font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.9}
+h1{font-size:clamp(29px,5vw,48px);line-height:1.08;margin:8px 0}
+.hero p{margin:7px 0;max-width:760px;opacity:.94}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.tag{padding:7px 12px;border-radius:999px;background:#ffffff1c;border:1px solid #ffffff33;font-size:13px}
+.progress{height:9px;background:#ffffff25;border-radius:99px;margin-top:24px;overflow:hidden}.progress i{display:block;height:100%;width:0;background:#fff;transition:.25s}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:25px;margin:19px 0;box-shadow:0 9px 28px #1720330b}
+.title{display:flex;align-items:center;gap:12px;margin:0 0 18px;font-size:22px}.num{width:38px;height:38px;border-radius:12px;background:#e9efff;color:var(--p);display:grid;place-items:center;font-weight:900}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:720px){.grid,.grid3{grid-template-columns:1fr}.wrap{padding:11px}.hero,.card{border-radius:18px;padding:19px}}
+label{display:block;font-weight:750;font-size:14px;margin-bottom:7px}
+input,textarea,select{width:100%;padding:12px 13px;border:1.5px solid var(--line);border-radius:12px;font:inherit;color:var(--ink);background:#fff;outline:none}
+input:focus,textarea:focus,select:focus{border-color:var(--p);box-shadow:0 0 0 4px #3157d51a}
+textarea{min-height:105px;resize:vertical}.required{color:var(--danger)}
+.note{padding:14px 16px;border-radius:13px;background:#eff6ff;border-left:5px solid var(--p);margin:14px 0}
+.info{padding:14px 16px;border-radius:13px;background:#ecfdf5;border-left:5px solid var(--a)}
+.feature{padding:14px;border:1px solid var(--line);background:var(--soft);border-radius:15px}
+.feature b{display:block;margin-bottom:3px}
+.reading{font-size:15px;background:linear-gradient(135deg,#fbfdff,#f8f5ff);border:1px solid var(--line);border-radius:17px;padding:19px}
+.question{border:1px solid var(--line);background:#fcfdff;border-radius:16px;padding:16px;margin:12px 0}.question>strong{display:block;margin-bottom:9px}
+.opts{display:flex;gap:8px;flex-wrap:wrap}.opt{position:relative;margin:0}.opt input{position:absolute;opacity:0;width:1px;height:1px}.opt span{display:block;padding:9px 13px;border:1.5px solid var(--line);border-radius:999px;background:#fff;cursor:pointer}.opt input:checked+span{border-color:var(--p);background:#edf2ff;color:var(--p);font-weight:800}
+.checks{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}@media(max-width:720px){.checks{grid-template-columns:1fr}}
+.check{padding:11px;border:1px solid var(--line);border-radius:12px;background:#fff}.check input{width:auto;margin-right:7px}
+.actions{display:flex;gap:9px;flex-wrap:wrap;position:sticky;bottom:10px;z-index:4;padding:12px;background:#ffffffed;backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:17px;box-shadow:0 12px 30px #17203318}
+button{border:0;border-radius:12px;padding:12px 16px;font:inherit;font-weight:850;cursor:pointer}.primary{color:#fff;background:linear-gradient(135deg,var(--p),var(--p2))}.blue{background:#eaf0ff;color:#254bc1}.green{background:#dcfce7;color:#166534}.white{background:#fff;border:1px solid var(--line)}
+.error{border-color:#ef4444!important;background:#fff7f7}
+#result{display:none}
+.result-head{text-align:center;border-bottom:2px solid #222;padding-bottom:12px}.result-head h2{margin:0 0 4px}
+.resultbox{border:1px solid #aaa;border-radius:12px;padding:15px;margin:13px 0}
+table{width:100%;border-collapse:collapse}td{padding:7px 5px;border-bottom:1px solid #ddd;vertical-align:top}td:first-child{width:34%;font-weight:750}
+.answer{white-space:pre-wrap;min-height:40px}
+.sign{display:grid;grid-template-columns:1fr 1fr;gap:50px;text-align:center;margin-top:38px}.signspace{height:90px}@media(max-width:650px){.sign{grid-template-columns:1fr;gap:20px}}
+.footer{text-align:center;color:var(--muted);font-size:13px;padding:20px}.toast{position:fixed;right:18px;bottom:18px;background:#172033;color:#fff;padding:13px 17px;border-radius:12px;display:none;z-index:20}
+@media print{
+ body{background:#fff;font-size:11pt}.wrap{max-width:none;padding:0}.hero{color:#111;background:#fff;box-shadow:none;border:2px solid #222}.hero:after,.no-print,#formArea{display:none!important}
+ .card{box-shadow:none;border:1px solid #aaa;padding:15px;margin:9px 0;break-inside:avoid}
+ #result{display:block!important}.resultbox{break-inside:avoid}.sign{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+ <div class="kicker">LKPD Interaktif • Bahasa Inggris • SMK Kelas X</div>
+ <h1>Descriptive Text</h1>
+ <p><b>Describe it clearly. Reflect on your learning.</b><br>Belajar mendeskripsikan orang, hewan, tempat, atau bangunan dengan struktur dan bahasa yang tepat.</p>
+ <div class="tags"><span class="tag">📖 Reading</span><span class="tag">✍️ Writing</span><span class="tag">💭 Reflection</span><span class="tag">📄 Print Ready</span></div>
+ <div class="progress"><i id="bar"></i></div>
+ <div style="font-size:12px;margin-top:5px">Progress: <span id="pct">0%</span></div>
+</header>
+
+<section class="card" id="formArea">
+ <h2 class="title"><span class="num">1</span> Identitas Siswa</h2>
+ <div class="note"><b>Petunjuk:</b> Isi data berikut dengan benar. Kolom bertanda <span class="required">*</span> wajib diisi. Data ini akan otomatis masuk ke lembar hasil yang siap dicetak.</div>
+ <div class="grid">
+  <div><label>Nama Lengkap <span class="required">*</span></label><input id="nama" placeholder="Tulis nama lengkap"></div>
+  <div><label>Kelas <span class="required">*</span></label><input id="kelas" placeholder="Contoh: X TJKT 1"></div>
+  <div><label>No. Absen <span class="required">*</span></label><input id="absen" type="number" min="1" placeholder="Nomor absen"></div>
+  <div><label>Nama Guru <span class="required">*</span></label><input id="guru" placeholder="Tulis nama guru"></div>
+ </div>
+</section>
+
+<section class="card">
+ <h2 class="title"><span class="num">2</span> Let's Learn!</h2>
+ <div class="grid3">
+  <div class="feature"><b>1. Identification</b>Introduce the object you want to describe.</div>
+  <div class="feature"><b>2. Description</b>Explain appearance, qualities, parts, location, or function.</div>
+  <div class="feature"><b>3. Language</b>Use Simple Present Tense and descriptive adjectives.</div>
+ </div>
+ <div class="note"><b>Useful words:</b> beautiful, large, ancient, clean, unique, famous, tall, traditional, modern, peaceful, spacious.</div>
+</section>
+
+<section class="card">
+ <h2 class="title"><span class="num">3</span> Read the Text</h2>
+ <div class="reading">
+  <h3>🏛️ Borobudur Temple</h3>
+  <p>Borobudur Temple is a famous Buddhist temple in Central Java, Indonesia. It is one of the largest Buddhist temples in the world. The temple has many stupas, stone carvings, and beautiful reliefs. It has several levels and a large main structure. The temple is surrounded by green landscapes and beautiful hills. Borobudur is an important historical and cultural site. Many local and international visitors come to see its beauty and learn about its history.</p>
+ </div>
+ <div class="question">
+  <strong>1. What is the text mainly about? <span class="required">*</span></strong>
+  <div class="opts">
+   <label class="opt"><input type="radio" name="q1" value="Borobudur Temple"><span>Borobudur Temple</span></label>
+   <label class="opt"><input type="radio" name="q1" value="A school"><span>A school</span></label>
+   <label class="opt"><input type="radio" name="q1" value="An animal"><span>An animal</span></label>
+  </div>
+ </div>
+ <div class="question">
+  <strong>2. Write three adjectives from the text. <span class="required">*</span></strong>
+  <input id="adj" placeholder="Example: famous, large, beautiful">
+ </div>
+ <div class="question">
+  <strong>3. What tense is mainly used? <span class="required">*</span></strong>
+  <select id="tense"><option value="">Choose an answer...</option><option>Simple Present Tense</option><option>Simple Past Tense</option><option>Future Tense</option></select>
+ </div>
+ <div class="question">
+  <strong>4. What information can you find in the description? (Choose all that apply) <span class="required">*</span></strong>
+  <div class="checks">
+   <label class="check"><input type="checkbox" name="info" value="Appearance / parts">Appearance / parts</label>
+   <label class="check"><input type="checkbox" name="info" value="Location">Location</label>
+   <label class="check"><input type="checkbox" name="info" value="Historical/cultural value">Historical/cultural value</label>
+   <label class="check"><input type="checkbox" name="info" value="Food">Food</label>
+  </div>
+ </div>
+</section>
+
+<section class="card">
+ <h2 class="title"><span class="num">4</span> Write Your Own Descriptive Text</h2>
+ <div class="info">Pilih satu objek yang kamu kenal, misalnya <b>an animal, a building, a tourist place,</b> atau <b>a public place</b>. Buat 5–8 kalimat berbahasa Inggris.</div>
+ <div class="grid" style="margin-top:14px">
+  <div><label>My object <span class="required">*</span></label><input id="object" placeholder="Example: My School / My Cat / Gedung sekolah"></div>
+  <div><label>Category <span class="required">*</span></label><select id="category"><option value="">Choose...</option><option>Animal</option><option>Building</option><option>Tourist Place</option><option>Public Place</option><option>Other</option></select></div>
+ </div>
+ <div style="margin-top:14px"><label>My Descriptive Text (5–8 sentences) <span class="required">*</span></label><textarea id="description" placeholder="Write your descriptive text here..."></textarea></div>
+</section>
+
+<section class="card">
+ <h2 class="title"><span class="num">5</span> Reflection</h2>
+ <div class="question"><strong>What did you learn today? <span class="required">*</span></strong><textarea id="learn" placeholder="Saya belajar bahwa..."></textarea></div>
+ <div class="question"><strong>What was the easiest part? Why? <span class="required">*</span></strong><textarea id="easy" placeholder="Bagian yang paling mudah adalah... karena..."></textarea></div>
+ <div class="question"><strong>What was the most difficult part? <span class="required">*</span></strong><textarea id="difficult" placeholder="Bagian yang paling sulit adalah..."></textarea></div>
+ <div class="question"><strong>What will you improve next time? <span class="required">*</span></strong><textarea id="improve" placeholder="Next time, I will..."></textarea></div>
+</section>
+
+<section class="card">
+ <h2 class="title"><span class="num">6</span> Self Assessment</h2>
+ <div class="question"><strong>I understand the generic structure of a descriptive text. <span class="required">*</span></strong>
+  <div class="opts"><label class="opt"><input type="radio" name="s1" value="Sangat Baik"><span>🌟 Sangat Baik</span></label><label class="opt"><input type="radio" name="s1" value="Baik"><span>🙂 Baik</span></label><label class="opt"><input type="radio" name="s1" value="Perlu Latihan"><span>💪 Perlu Latihan</span></label></div>
+ </div>
+ <div class="question"><strong>I can use adjectives to describe an object. <span class="required">*</span></strong>
+  <div class="opts"><label class="opt"><input type="radio" name="s2" value="Sangat Baik"><span>🌟 Sangat Baik</span></label><label class="opt"><input type="radio" name="s2" value="Baik"><span>🙂 Baik</span></label><label class="opt"><input type="radio" name="s2" value="Perlu Latihan"><span>💪 Perlu Latihan</span></label></div>
+ </div>
+ <div class="question"><strong>I can write a descriptive text independently. <span class="required">*</span></strong>
+  <div class="opts"><label class="opt"><input type="radio" name="s3" value="Sangat Baik"><span>🌟 Sangat Baik</span></label><label class="opt"><input type="radio" name="s3" value="Baik"><span>🙂 Baik</span></label><label class="opt"><input type="radio" name="s3" value="Perlu Latihan"><span>💪 Perlu Latihan</span></label></div>
+ </div>
+ <div class="question"><strong>My learning effort today was... <span class="required">*</span></strong>
+  <div class="opts"><label class="opt"><input type="radio" name="s4" value="Excellent"><span>🏆 Excellent</span></label><label class="opt"><input type="radio" name="s4" value="Good"><span>👍 Good</span></label><label class="opt"><input type="radio" name="s4" value="Need Improvement"><span>🔄 Need Improvement</span></label></div>
+ </div>
+</section>
+
+<section class="card no-print">
+ <h2 class="title"><span class="num">✓</span> Final Check</h2>
+ <p>Setelah selesai, klik <b>Generate Hasil</b>. Lembar hasil akan dibuat secara otomatis. Gunakan <b>Cetak / Simpan PDF</b> untuk menghasilkan file PDF yang dapat dicetak dan ditandatangani.</p>
+ <div class="actions" style="position:static;background:transparent;box-shadow:none;border:0;padding:0">
+  <button class="primary" onclick="generate()">✨ Generate Hasil</button>
+  <button class="blue" onclick="save()">💾 Simpan Isian</button>
+  <button class="white" onclick="resetAll()">↺ Mulai Ulang</button>
+ </div>
+</section>
+
+<section id="result">
+ <div class="card">
+  <div class="result-head">
+   <h2>LKPD / REFLECTION SHEET</h2>
+   <b>BAHASA INGGRIS — DESCRIPTIVE TEXT</b><br>KELAS X SMK
+  </div>
+  <div class="resultbox">
+   <h3>Student Identity</h3>
+   <table>
+    <tr><td>Nama Lengkap</td><td id="r-nama"></td></tr>
+    <tr><td>Kelas</td><td id="r-kelas"></td></tr>
+    <tr><td>No. Absen</td><td id="r-absen"></td></tr>
+    <tr><td>Nama Guru</td><td id="r-guru"></td></tr>
+   </table>
+  </div>
+  <div class="resultbox">
+   <h3>Reading & Understanding — Borobudur Temple</h3>
+   <table>
+    <tr><td>Main topic</td><td id="r-q1"></td></tr>
+    <tr><td>Three adjectives</td><td id="r-adj"></td></tr>
+    <tr><td>Main tense</td><td id="r-tense"></td></tr>
+    <tr><td>Information identified</td><td id="r-info"></td></tr>
+   </table>
+  </div>
+  <div class="resultbox">
+   <h3>My Descriptive Text</h3>
+   <p><b>Object:</b> <span id="r-object"></span> &nbsp; | &nbsp; <b>Category:</b> <span id="r-category"></span></p>
+   <div id="r-description" class="answer"></div>
+  </div>
+  <div class="resultbox">
+   <h3>My Reflection</h3>
+   <p><b>What did I learn?</b><br><span id="r-learn"></span></p>
+   <p><b>The easiest part:</b><br><span id="r-easy"></span></p>
+   <p><b>The most difficult part:</b><br><span id="r-difficult"></span></p>
+   <p><b>My improvement plan:</b><br><span id="r-improve"></span></p>
+  </div>
+  <div class="resultbox">
+   <h3>Self Assessment</h3>
+   <table><tr><td>Generic structure</td><td id="r-s1"></td></tr><tr><td>Using adjectives</td><td id="r-s2"></td></tr><tr><td>Writing independently</td><td id="r-s3"></td></tr><tr><td>Learning effort</td><td id="r-s4"></td></tr></table>
+  </div>
+  <div class="sign">
+   <div>Mengetahui,<br><b>Orang Tua / Wali</b><div class="signspace"></div><b>( __________________________ )</b></div>
+   <div><b>Guru Mata Pelajaran</b><div class="signspace"></div><b>( <span id="r-guru-sign">__________________________</span> )</b></div>
+  </div>
+  <p style="text-align:center;font-size:10pt;margin-top:28px">Dokumen ini siap dicetak atau disimpan sebagai PDF untuk ditandatangani.</p>
+ </div>
+</section>
+
+<div class="actions no-print">
+ <button class="primary" onclick="generate()">✨ Generate / Update Hasil</button>
+ <button class="green" onclick="printPDF()">🖨️ Cetak / Simpan sebagai PDF</button>
+ <button class="blue" onclick="downloadTxt()">⬇️ Unduh Ringkasan TXT</button>
+</div>
+<div class="footer">LKPD Interaktif Bahasa Inggris • Descriptive Text • Kelas X SMK</div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const textIds=['nama','kelas','absen','guru','adj','tense','object','category','description','learn','easy','difficult','improve'];
+const radios=['q1','s1','s2','s3','s4'];
+const $=id=>document.getElementById(id);
+const v=id=>$(id).value.trim();
+const r=name=>{let x=document.querySelector('input[name="'+name+'"]:checked');return x?x.value:''};
+function toast(m){let t=$('toast');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',2400)}
+function info(){return [...document.querySelectorAll('input[name="info"]:checked')].map(x=>x.value)}
+function complete(){
+ let ok=true;
+ textIds.forEach(id=>{let e=$(id);if(!v(id)){e.classList.add('error');ok=false}else e.classList.remove('error')});
+ radios.forEach(n=>{if(!r(n))ok=false});
+ if(info().length===0)ok=false;
+ return ok;
+}
+function generate(){
+ if(!complete()){toast('Masih ada bagian wajib yang belum diisi.');return}
+ const pairs={'r-nama':'nama','r-kelas':'kelas','r-absen':'absen','r-guru':'guru','r-adj':'adj','r-tense':'tense','r-object':'object','r-category':'category','r-description':'description','r-learn':'learn','r-easy':'easy','r-difficult':'difficult','r-improve':'improve'};
+ for(const [a,b] of Object.entries(pairs))$(a).textContent=v(b)||'-';
+ $('r-q1').textContent=r('q1'); $('r-info').textContent=info().join(', ');
+ radios.slice(1).forEach(n=>$('r-'+n).textContent=r(n));
+ $('r-guru-sign').textContent=v('guru');
+ $('result').style.display='block';
+ localStorage.setItem('descriptiveLKPD',JSON.stringify(collect()));
+ toast('Hasil berhasil dibuat.');
+}
+function collect(){
+ let d={};textIds.forEach(id=>d[id]=v(id));radios.forEach(n=>d[n]=r(n));d.info=info();return d;
+}
+function save(){localStorage.setItem('descriptiveLKPD',JSON.stringify(collect()));toast('Isian tersimpan di browser.')}
+function load(){
+ try{let d=JSON.parse(localStorage.getItem('descriptiveLKPD'));if(!d)return;
+ textIds.forEach(id=>{if(d[id]!=null)$(id).value=d[id]});
+ radios.forEach(n=>{if(d[n]){let x=[...document.querySelectorAll('input[name="'+n+'"]')].find(z=>z.value===d[n]);if(x)x.checked=true}});
+ if(d.info)document.querySelectorAll('input[name="info"]').forEach(x=>x.checked=d.info.includes(x.value));
+ }catch(e){}
+}
+function resetAll(){if(confirm('Hapus semua isian dan mulai dari awal?')){localStorage.removeItem('descriptiveLKPD');location.reload()}}
+function printPDF(){
+ if($('result').style.display==='none'){generate();if($('result').style.display==='none')return}
+ window.print();
+}
+function downloadTxt(){
+ if(!complete()){toast('Lengkapi semua bagian wajib terlebih dahulu.');return}
+ let d=collect();
+ let s=`LKPD / REFLECTION SHEET\\nBAHASA INGGRIS — DESCRIPTIVE TEXT\\nKELAS X SMK\\n\\n`;
+ s+=`IDENTITAS\\nNama: ${d.nama}\\nKelas: ${d.kelas}\\nNo. Absen: ${d.absen}\\nNama Guru: ${d.guru}\\n\\n`;
+ s+=`READING — BOROBUDUR TEMPLE\\nMain topic: ${d.q1}\\nAdjectives: ${d.adj}\\nMain tense: ${d.tense}\\nInformation: ${d.info.join(', ')}\\n\\n`;
+ s+=`MY DESCRIPTIVE TEXT\\nObject: ${d.object}\\nCategory: ${d.category}\\n${d.description}\\n\\n`;
+ s+=`REFLECTION\\nWhat did I learn?\\n${d.learn}\\n\\nEasiest part:\\n${d.easy}\\n\\nMost difficult part:\\n${d.difficult}\\n\\nImprovement plan:\\n${d.improve}\\n\\n`;
+ s+=`SELF ASSESSMENT\\nGeneric structure: ${d.s1}\\nUsing adjectives: ${d.s2}\\nWriting independently: ${d.s3}\\nLearning effort: ${d.s4}\\n\\n`;
+ s+=`Orang Tua/Wali: __________________________\\nGuru: (${d.guru})\\n`;
+ let blob=new Blob([s],{type:'text/plain;charset=utf-8'}),a=document.createElement('a');
+ a.href=URL.createObjectURL(blob);a.download='LKPD_Descriptive_Text_'+d.nama.replace(/\\s+/g,'_')+'.txt';a.click();URL.revokeObjectURL(a.href);
+}
+function progress(){
+ let total=textIds.length+radios.length+1,done=textIds.filter(x=>v(x)).length+radios.filter(x=>r(x)).length+(info().length?1:0);
+ let p=Math.round(done/total*100);$('bar').style.width=p+'%';$('pct').textContent=p+'%';
+}
+document.querySelectorAll('input,textarea,select').forEach(e=>e.addEventListener('input',progress));
+document.querySelectorAll('input[type=radio],input[type=checkbox]').forEach(e=>e.addEventListener('change',progress));
+load();progress();
+</script>
+</body>
+</html>
